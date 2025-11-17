@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fratres Jiu Jitsu | Excelência em Artes Marciais</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuMGFYgMRMrYnCQ6oowFajlV5Wd4F/L6jU9S8oF/A6I/kDw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --cor-principal: #8B0000; /* Vermelho Escuro */
+            --cor-secundaria: #ff6600; /* Laranja (para botões/destaques) */
+            --cor-fundo-claro: #fcfcfc; /* Branco Quase Puro */
+            --cor-fundo-escuro: #000;
+            --cor-texto-claro: #fff;
+            --cor-texto-escuro: #222;
+            --fonte-principal: 'Roboto Condensed', Arial, sans-serif;
+            --sombra-card: 0 6px 15px rgba(0,0,0,0.1);
+            --cor-laranja-brilhante: #FF6600; /* Laranja para o botão da imagem */
+        }
+
+        /* Base e Reset */
+        body {
+            font-family: var(--fonte-principal);
+            margin: 0;
+            padding-top: 60px;
+            background-color: var(--cor-fundo-claro);
+            color: var(--cor-texto-escuro);
+            scroll-behavior: smooth;
+        }
+        
+        /* --- Menu de Navegação (Aprimorado Visualmente) --- */
+        .navbar {
+            background-color: var(--cor-fundo-escuro);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra mais forte */
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a {
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .nav-links a::after { /* Sublinhado animado */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--cor-principal);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .btn-menu-academia {
+            border: 2px solid var(--cor-principal);
+            background-color: var(--cor-principal);
+            transition: all 0.3s ease;
+        }
+        .btn-menu-academia:hover { 
+            background-color: var(--cor-fundo-escuro);
+            color: var(--cor-principal);
+            border-color: var(--cor-principal);
+        }
+
+        /* --- Header/Carousel (Melhorado o Efeito de Destaque) --- */
+        .header { padding: 0 !important; }
+        .c-item { height: 80vh; min-height: 500px; }
+        .c-img { filter: brightness(0.4); } /* Deixa mais escuro para o texto brilhar */
+        .carousel-caption h1 { 
+            font-size: 4.5em; 
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .carousel-caption p { 
+            font-size: 1.5em; 
+            font-weight: 400;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        /* --- Títulos (H2) --- */
+        h2 { 
+            /* Corrigido para a cor do texto da imagem (vermelho escuro) */
+            color: var(--cor-principal); 
+            text-align: center; 
+            margin-bottom: 40px; 
+            font-size: 2.8em; 
+            font-weight: 700;
+            letter-spacing: 2px;
+            /* Removido o border-bottom para corresponder à imagem */
+            border-bottom: none; 
+            display: block; /* Ocupa a largura total para o texto centralizado */
+            padding-bottom: 0;
+        }
+        /* Corrigido o texto do título H2 para EXPLORE NOSSAS MODALIDADES */
+        #modalidades h2 {
+            font-size: 2.5em; 
+            color: #AA4A44; /* Cor mais próxima do vermelho da imagem */
+            font-weight: 400;
+            letter-spacing: 3px;
+        }
+
+        /* Nossa História/Intro */
+        .section-intro { 
+            padding: 70px 10%;
+            background: linear-gradient(to right, #ffffff, var(--cor-fundo-claro));
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .section-intro .right { 
+            border-left: 5px solid var(--cor-principal); /* Borda mais grossa */
+            padding-left: 30px;
+            color: #555; 
+            line-height: 1.7;
+        }
+        .section-intro h2 { text-align: left; border-bottom: none; font-size: 2.2em; }
+        
+        /* Cards de Vantagens (Visual Premium) */
+        .cards-container { 
+            padding: 50px 10%; 
+            background-color: var(--cor-fundo-claro);
+        }
+        .cards-container .card-vantagem { 
+            border-radius: 12px; 
+            padding: 30px 20px; 
+            box-shadow: var(--sombra-card); 
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-top: 5px solid var(--cor-principal);
+        }
+        .cards-container .card-vantagem:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        .cards-container .card-vantagem i {
+            font-size: 2.5em;
+            color: var(--cor-principal);
+            margin-bottom: 15px;
+        }
+        .cards-container .card-vantagem h3 { 
+            font-size: 1.5em;
+            letter-spacing: 1px;
+            color: var(--cor-texto-escuro);
+        }
+
+        /* Missão e Visão (Efeito Dramático) */
+        .dark-sections { 
+            background: url('https://via.placeholder.com/1920x400?text=FUNDO+ACADEMIA+ESCURO') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed; /* Efeito Parallax suave */
+            position: relative;
+            padding: 100px 10%; 
+        }
+        .dark-sections::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.75); /* Sobreposição escura */
+            z-index: 0;
+        }
+        .dark-section-box { 
+            background-color: rgba(139, 0, 0, 0.1); /* Fundo transparente levemente vermelho */
+            border: 1px solid var(--cor-principal);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+        .dark-section-box h3 { color: var(--cor-secundaria); }
+        .dark-section-box p { font-style: italic; }
+
+
+        /* --- ESTILOS MODALIDADES (SWIPER) - NOVO ESTILO DA IMAGEM --- */
+        .modalidades-section { padding-bottom: 70px; background-color: #f7f7f7; }
+        
+        .swiper-slide .card-modalidade {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-slide .card-modalidade:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-modalidade .card-img-top {
+            width: 100%;
+            height: 350px; /* Altura fixa da imagem */
+            object-fit: cover;
+            filter: brightness(0.6); /* Escurece a imagem para o texto sobressair */
+        }
+        
+        .card-modalidade .card-content-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: var(--cor-texto-claro);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+        }
+        
+        .card-content-overlay .modalidade-info-top {
+            text-align: left;
+            font-size: 1.1em;
+            font-weight: 700;
+            opacity: 0.8;
+        }
+        
+        .card-content-overlay .modalidade-info-bottom {
+            padding-bottom: 10px;
+        }
+
+        .card-content-overlay h3 { 
+            font-size: 2.2em; /* Título maior */
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            color: var(--cor-texto-claro);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .card-content-overlay p {
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #ddd;
+            margin-bottom: 25px;
+        }
+
+        .card-content-overlay button {
+            background-color: var(--cor-laranja-brilhante); /* Cor Laranja da Imagem */
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .card-content-overlay button:hover { 
+            background-color: var(--cor-principal); 
+        }
+
+        /* Swiper Arrows and Pagination - Estilo da Imagem (Setas Vermelhas, Paginação Azul/Padrão) */
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--cor-principal); /* Vermelho */
+            transform: scale(0.8);
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+        } 
+        
+        .swiper-button-next::after, .swiper-button-prev::after {
+            font-size: 30px !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #007aff; /* Cor padrão do Swiper ou azul como na imagem */
+        }
+
+        /* Fundadores e Unidades */
+        .fundadores-section { padding: 70px 10%; background-color: #f0f0f0; }
+        .fundador-item { 
+            box-shadow: var(--sombra-card); 
+            transition: transform 0.3s ease;
+        }
+        .fundador-item:hover { transform: scale(1.05); }
+        .fundador-item p { font-size: 1.1em; }
+        .map-container { 
+            border: 5px solid var(--cor-principal);
+        }
+
+        /* Blog e Notícias */
+        .blog-news-section { background-color: var(--cor-texto-claro); padding-top: 70px; }
+        .news-item { cursor: pointer; }
+        .news-content h3 { font-weight: 700; }
+        .news-content p { line-height: 1.4; }
+
+        /* Footer (Mais Profissional) */
+        .footer { 
+            background-color: #111; 
+            border-top: 5px solid var(--cor-principal);
+        }
+        .footer-col h3 { 
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--cor-secundaria);
+            padding-bottom: 5px;
+        }
+        .footer-col ul li a:hover { color: var(--cor-secundaria); }
+        .footer-col p { color: #aaa; }
+        .footer .fab {
+            color: var(--cor-principal);
+            transition: color 0.3s;
+        }
+        .footer .fab:hover {
+            color: var(--cor-secundaria);
+        }
+
+        /* Modal (Final Touch) */
+        .modal-content { 
+            border: 1px solid var(--cor-principal);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+        }
+        .modal-content form input, 
+        .modal-content form textarea { 
+            border-radius: 4px;
+        }
+        .modal-content form button { 
+            background-color: var(--cor-secundaria); 
+            letter-spacing: 2px;
+        }
+        .modal-content form button:hover { 
+            background-color: var(--cor-principal); 
+        }
+
+        /* Media Queries (Ajuste para Responsividade Visual) */
+        @media (max-width: 768px) {
+            h2 { font-size: 2em; margin-bottom: 30px; }
+            .carousel-caption h1 { font-size: 2.5em; }
+            .carousel-caption p { font-size: 1.2em; }
+            .section-intro .right { padding-top: 10px; border-top: 5px solid var(--cor-principal); border-left: none; padding-left: 0; }
+            .cards-container { padding: 50px 5%; }
+            .cards-container .card-vantagem { width: 100%; margin-bottom: 20px; }
+            .dark-sections { padding: 50px 5%; background-attachment: scroll; }
+            .fundadores-grid { gap: 20px; }
+            .fundadores-section { padding: 50px 5%; }
+            .card-modalidade .card-img-top { height: 250px; } /* Ajuste de altura para mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Fratres Jiu Jitsu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse nav-links" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#header">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#historia">Nossa História</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#modalidades">Modalidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#fundadores">Fundadores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#unidades">Unidades</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-menu-academia text-white" data-bs-toggle="modal" data-bs-target="#contatoModal">
+                            Entre em Contato
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header id="header" class="header">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                
+                <div class="carousel-item active c-item">
+                    <img src="assets/img/banner (1).png" class="d-block w-100 c-img" alt="Treinamento de Jiu Jitsu">
+                    <div class="carousel-caption top-50 translate-middle-y d-none d-md-block">
+                        <h1>Jiu Jitsu: A Arte Suave</h1>
+                        <p>Disciplina, Honra e Excelência no Tatame.</p>
+                        <a href="#modalidades" class="btn btn-lg btn-danger mt-3">Ver Nossas Modalidades</a>
+                    </div>
+                </div>
+
+                <div class="carousel-item c-item">
+                    <img src="assets/img/banners (2).png" class="d-block w-100 c-img" alt="Treinamento de Muay Thai">
+                    <div class="carousel-caption top-50 translate-middle-y d-none d-md-block">
+                        <h1>Muay Thai e Boxe</h1>
+                        <p>Fortaleça o Corpo e a Mente com a Luta em Pé.</p>
+                        <a href="#modalidades" class="btn btn-lg btn-danger mt-3">Comece a Treinar</a>
+                    </div>
+                </div>
+
+                <div class="carousel-item c-item">
+                    <img src="assets/img/banners (3).png" class="d-block w-100 c-img" alt="Jiu Jitsu Infantil">
+                    <div class="carousel-caption top-50 translate-middle-y d-none d-md-block">
+                        <h1>Fratres Kids</h1>
+                        <p>Valores e Respeito para Nossos Futuros Campeões.</p>
+                        <a href="#modalidades" class="btn btn-lg btn-danger mt-3">Matricule seu Filho</a>
+                    </div>
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+
+    <section id="historia" class="section-intro">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="assets/img/G.png" class="img-fluid rounded shadow-lg" alt="Mestre da Fratres Jiu Jitsu">
+                </div>
+                <div class="col-lg-6 right">
+                    <h2>Nossa História e Legado</h2>
+                    <p class="lead">
+                        Fundada em 2010, a Fratres Jiu Jitsu nasceu do sonho de promover a disciplina e a excelência marcial. Mais do que uma academia, somos uma **irmandade** (Fratres, em latim), dedicados a formar não apenas atletas, mas cidadãos melhores.
+                    </p>
+                    <p>
+                        Nossa metodologia é baseada nos princípios mais tradicionais do Jiu Jitsu, combinados com as técnicas mais modernas de treinamento físico e mental. Do básico ao avançado, cada aluno é visto como um membro da família.
+                    </p>
+                    <a href="#fundadores" class="btn btn-outline-danger mt-3">Conheça Nossos Mestres</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cards-container text-center">
+        <div class="container">
+            <h2>Por Que Escolher a Fight Academy?</h2>
+            <div class="row pt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card-vantagem bg-white h-100">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Comunidade Forte</h3>
+                        <p>Ambiente familiar, seguro e acolhedor. Aqui, seu parceiro de treino é seu irmão.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card-vantagem bg-white h-100">
+                        <i class="fas fa-dumbbell"></i>
+                        <h3>Treinamento Completo</h3>
+                        <p>Programas que envolvem força, resistência e técnica apurada para todas as idades.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card-vantagem bg-white h-100">
+                        <i class="fas fa-medal"></i>
+                        <h3>Excelência Técnica</h3>
+                        <p>Instrutores altamente qualificados, com histórico comprovado em competições nacionais e internacionais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-sections text-center text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0 dark-section-box p-4 rounded">
+                    <h3>Nossa Missão</h3>
+                    <p class="lead">
+                        Transformar vidas através da filosofia do Jiu Jitsu, promovendo saúde, autoconfiança e valores éticos.
+                    </p>
+                </div>
+                <div class="col-md-6 dark-section-box p-4 rounded">
+                    <h3>Nossa Visão</h3>
+                    <p class="lead">
+                        Ser reconhecida como a principal academia de artes marciais do estado, sinônimo de excelência e disciplina marcial.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modalidades" class="modalidades-section py-5">
+        <div class="container">
+            <h2 class="text-center"> NOSSAS MODALIDADES </h2>
+            
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                        <div class="card card-modalidade">
+                            <img src="assets/img/NOGI.jpg" class="card-img-top" alt="Jiu-Jitsu">
+                            <div class="card-content-overlay">
+                                <div class="modalidade-info-top">JIU-JITSU - NOGI</div> 
+                                <div class="modalidade-info-bottom">
+                                    <h3>JIU-JITSU - NOGI</h3>
+                                    <p>Treine força, velocidade e agilidade. Aulas para todos os níveis, do iniciante ao avançado, focando em técnica e condicionamento físico.</p>
+                                    <button>Ver Horários</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="card card-modalidade">
+                            <img src="assets/img/ADULTO.webp" class="card-img-top" alt="Jiu-Jitsu">
+                            <div class="card-content-overlay">
+                                <div class="modalidade-info-top">JIU-JITSU - ADULTO</div> 
+                                <div class="modalidade-info-bottom">
+                                    <h3>JIU-JITSU - ADULTO</h3>
+                                    <p>Treine força, velocidade e agilidade. Aulas para todos os níveis, do iniciante ao avançado, focando em técnica e condicionamento físico.</p>
+                                    <button>Ver Horários</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="swiper-slide">
+                        <div class="card card-modalidade">
+                            <img src="assets/img/KIDS.webp" class="card-img-top" alt="Jiu-Jitsu">
+                            <div class="card-content-overlay">
+                                <div class="modalidade-info-top">JIU-JITSU - KIDS</div> 
+                                <div class="modalidade-info-bottom">
+                                    <h3>JIU-JITSU - KIDS</h3>
+                                    <p>Treine força, velocidade e agilidade. Aulas para todos os níveis, do iniciante ao avançado, focando em técnica e condicionamento físico.</p>
+                                    <button>Ver Horários</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card card-modalidade">
+                            <img src="assets/img/JUDO.webp" class="card-img-top" alt="Judô">
+                            <div class="card-content-overlay">
+                                <div class="modalidade-info-top"> JUDÔ</div> 
+                                <div class="modalidade-info-bottom">
+                                    <h3>JUDÔ</h3>
+                                    <p>Aulas de Hatha e Vinyasa para equilibrar corpo e mente, melhorar a flexibilidade e reduzir o estresse diário.</p>
+                                    <button>Ver Horários</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="swiper-slide">
+                        <div class="card card-modalidade">
+                            <img src="assets/img/cke.webp" class="card-img-top" alt="Jiu-Jitsu">
+                            <div class="card-content-overlay">
+                                <div class="modalidade-info-top">TAEKWONDO</div> 
+                                <div class="modalidade-info-bottom">
+                                    <h3>TAEKWONDO</h3>
+                                    <p>Treine força, velocidade e agilidade. Aulas para todos os níveis, do iniciante ao avançado, focando em técnica e condicionamento físico.</p>
+                                    <button>Ver Horários</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card card-modalidade">
+                            <img src="assets/img/MUAI.webp" class="card-img-top" alt="Muay Thai">
+                            <div class="card-content-overlay">
+                                <div class="modalidade-info-top">JUDÔ</div> 
+                                <div class="modalidade-info-bottom">
+                                    <h3>MUAY THAI</h3>
+                                    <p>Treinos de alta intensidade e funcionalidade (WODs) em grupo. Desafie seus limites com o melhor do Crossfit.</p>
+                                    <button>Ver Horários</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card card-modalidade">
+                            <img src="assets/img/BOXE.avif" class="card-img-top" alt="Boxe">
+                            <div class="card-content-overlay">
+                                <div class="modalidade-info-top">Luta em Pé</div> 
+                                <div class="modalidade-info-bottom">
+                                    <h3>BOXE</h3>
+                                    <p>Desenvolva agilidade, coordenação e poder de nocaute. Treinamento focado em técnica de punho e condicionamento.</p>
+                                    <button>Ver Horários</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="swiper-slide">
+                        <div class="card card-modalidade">
+                            <img src="assets/img/mma.jpg" class="card-img-top" alt="Jiu-Jitsu">
+                            <div class="card-content-overlay">
+                                <div class="modalidade-info-top">MMA</div> 
+                                <div class="modalidade-info-bottom">
+                                    <h3>MMA</h3>
+                                    <p>Treine força, velocidade e agilidade. Aulas para todos os níveis, do iniciante ao avançado, focando em técnica e condicionamento físico.</p>
+                                    <button>Ver Horários</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+    
+    ---
+
+    <section id="fundadores" class="fundadores-section">
+        <div class="container text-center">
+            <h2 class="mb-5">Os Fundadores da Fight Academy</h2>
+            <div class="row justify-content-center fundadores-grid">
+                
+                <div class="col-lg-5 mb-4">
+                    <div class="fundador-item bg-white p-4 rounded h-100">
+                        <h3 class="text-danger">Mestre Ricardo "O Leão"</h3>
+                        <p class="text-muted">Faixa Preta 5º Grau</p>
+                        <p>Visão estratégica e foco na formação de atletas de alto rendimento. O pilar técnico da Fratres.</p>
+                        <div class="social-icons">
+                            <a href="#" class="text-secondary mx-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-secondary mx-2"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 mb-4">
+                    <div class="fundador-item bg-white p-4 rounded h-100">
+                        <h3 class="text-danger">Mestre Rafael "A Rocha"</h3>
+                        <p class="text-muted">Faixa Preta 4º Grau</p>
+                        <p>Líder comunitário e mentor. Responsável pela metodologia de ensino infantil e juvenil e pelos valores da equipe.</p>
+                        <div class="social-icons">
+                            <a href="#" class="text-secondary mx-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-secondary mx-2"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    ---
+
+    <section id="unidades" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Nossas Unidades</h2>
+            <div class="row">
+                
+                <div class="col-lg-6 mb-4">
+                    <h3 class="text-danger">Matriz Central - Mauá</h3>
+                    <p><i class="fas fa-map-marker-alt text-danger me-2"></i> Av Barão de Mauá, 1546 - Jardim Maringá</p>
+                    <div class="map-container overflow-hidden rounded shadow-lg">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.2446728099244!2d-46.433870613236756!3d-23.667206610624984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce6d001137a377%3A0xf34c7cabba1e3d18!2sFratres%20Maring%C3%A1!5e0!3m2!1spt-BR!2sbr!4v1763402790073!5m2!1spt-BR!2sbr" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                    <h3 class="text-danger">Filial Zona Sul - Academia Fratres</h3>
+                    <p><i class="fas fa-map-marker-alt text-danger me-2"></i> Avenida do Tatame, 456 - Bairro do Sul</p>
+                    <div class="map-container overflow-hidden rounded shadow-lg">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.443187258384!2d-46.63469008447065!3d-23.55051998471569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5957b44743c3%3A0xf639891081516e8!2sS%C3%A9%20Cathedral!5e0!3m2!1sen!2sbr!4v1628173491987!5m2!1sen!2sbr" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-news-section py-5">
+        <div class="container">
+            <h2 class="text-center">Notícias da Irmandade</h2>
+            <div class="row">
+                
+                <div class="col-md-4 news-item mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/MICA.jpg" class="card-img-top" alt="Notícia 1">
+                        <div class="card-body news-content">
+                            <small class="text-muted">15 NOV 2025</small>
+                            <h3><a href="#" class="text-decoration-none text-dark">Fratres Conquista 1º Lugar no Campeonato Estadual</a></h3>
+                            <p class="card-text">Nossos atletas dominaram o pódio, trazendo 12 medalhas de ouro para a equipe. Saiba mais sobre a jornada.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 news-item mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/FEMININO.png" class="card-img-top" alt="Notícia 2">
+                        <div class="card-body news-content">
+                            <small class="text-muted">05 NOV 2025</small>
+                            <h3><a href="#" class="text-decoration-none text-dark">Workshop Gratuito de Defesa Pessoal Feminina</a></h3>
+                            <p class="card-text">Sucesso total! A Fratres promoveu um dia de treinamento focado em autoproteção para mulheres da comunidade.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 news-item mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="assets/img/jonson_1024x1024.webp" class="card-img-top" alt="Notícia 3">
+                        <div class="card-body news-content">
+                            <small class="text-muted">28 OUT 2025</small>
+                            <h3><a href="#" class="text-decoration-none text-dark">Entrevista Exclusiva com o Atleta Faixa Marrom Destaque</a></h3>
+                            <p class="card-text">Conheça a história de superação e dedicação de nosso atleta que se prepara para o Mundial de NOGI.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-dark">Ver Todas as Notícias</a>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <footer class="footer text-white py-5">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-4 footer-col mb-4">
+                    <h3 class="mb-3">Contato</h3>
+                    <p><i class="fas fa-phone-alt me-2"></i> (11) 98765-4321</p>
+                    <p><i class="fas fa-envelope me-2"></i> contato@fratresjj.com.br</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Rua do Quimono, 123 - Cidade Alpha, SP</p>
+                </div>
+
+                <div class="col-md-4 footer-col mb-4">
+                    <h3 class="mb-3">Links Úteis</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="#modalidades" class="text-white text-decoration-none">Horários e Aulas</a></li>
+                        <li><a href="#unidades" class="text-white text-decoration-none">Localização</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 footer-col mb-4">
+                    <h3 class="mb-3">Siga a Irmandade</h3>
+                    <div class="social-links fs-4">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <p class="mt-4">Receba novidades e dicas de treino:</p>
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control form-control-sm" placeholder="Seu email" aria-label="Seu email">
+                            <button class="btn btn-danger btn-sm" type="submit">Assinar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="mt-4 border-danger">
+            <div class="text-center pt-3">
+                <p class="mb-0 text-muted">© 2025 Fratres Jiu Jitsu. Todos os direitos reservados. | Desenvolvido com <i class="fas fa-heart text-danger"></i></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="modal fade" id="contatoModal" tabindex="-1" aria-labelledby="contatoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="contatoModalLabel">Fale com a Fratres</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Preencha o formulário abaixo e entraremos em contato para agendar sua **aula experimental gratuita**!</p>
+                    <form>
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome Completo</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">Telefone (Whatsapp)</label>
+                            <input type="tel" class="form-control" id="telefone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modalidade" class="form-label">Modalidade de Interesse</label>
+                            <select class="form-select" id="modalidade">
+                                <option selected>Selecione...</option>
+                                <option value="jjadulto">Jiu Jitsu Adulto</option>
+                                <option value="jjkids">Jiu Jitsu Kids</option>
+                                <option value="muaythai">Muay Thai</option>
+                                <option value="submission">Submission/NOGI</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 text-dark fw-bold mt-3">Agendar Aula Experimental</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            // Configurações de Responsividade
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3, // Ajustado para 3 cards na tela, como na imagem
+                    spaceBetween: 30,
+                },
+            },
+        });
+    </script>
+</body>
+</html>
